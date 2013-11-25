@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <!-- Slide meta data, remove/edit as you see fit -->
+    <title>Primera aplicación Ruby On Rails</title>
+    <meta name="author" content="Luis Lopez" />
+    <meta name="email" content="luigibyte@gmail.com" />
+    <meta name="date" content="2013-02-27" />
+    <!-- Slippy core file and dependencies -->
+    <script type="text/javascript" src="jquery-1.4.2.min.js"></script>
+    <script type="text/javascript" src="jquery.history.js"></script>
+    <script type="text/javascript" src="custom.js"></script>
+    <script type="text/javascript" src="slippy-0.9.0.js"></script>
+    <!-- Slippy structural styles -->
+    <link type="text/css" rel="stylesheet" href="slippy-0.9.0.css"/>
+    <!-- Slippy theme -->
+    <link type="text/css" rel="stylesheet" href="slippy-kerryb.css"/>
+    <!-- Syntax highlighting -->
+    <script type="text/javascript" src="highlighter/shCore.js"></script>
+    <script type="text/javascript" src="highlighter/shBrushBash.js"></script>
+    <script type="text/javascript" src="highlighter/shBrushRuby.js"></script>
+    <link type="text/css" rel="stylesheet" href="highlighter/shCore.css"/>
+    <link type="text/css" rel="stylesheet" href="highlighter/shThemeEclipse.css"/>
+    <!-- Slippy init code -->
+    <script type="text/javascript">
+      $(function() {
+          $(".slide").slippy({
+          });
+          SyntaxHighlighter.all();
+          });
+    </script>
+  </head>
+  <body>
+    
+    <div class="slide">
+      <h1>Primera Aplicación Ruby on Rails</h1>
+      <div class='center'><img src="images/rails.png" height='300px'></div>
+    </div>
+
+    <div class="slide">
+      <h1>Diagrama Entidad Relación</h1>
+      <div class='center'><img src="images/rfd-entity-relation-diagram.png" height='200px'></div>
+    </div>
+
+    <div class="slide">
+      <h1>Creación del esqueleto de nuestra app</h1>
+      <div>
+        <pre class="brush: bash">
+          $ rails new RFD
+        </pre>
+      </div>
+    </div>
+
+    <div class="slide">
+      <h1>Lugares (places)</h1>
+      <div>
+        <pre class="brush: bash">
+          $ rails g scaffold Place title:string description:text address:string
+          
+          $ rake db:migrate
+          
+          $ rails s
+        </pre>
+        <p>Ya podemos ver nuestro sitio en: </p>
+        <p><a href='http://localhost:3000/places' target='blank'>http://localhost:3000/places</a></p>
+      </div>
+    </div>
+    
+    <div class="slide">
+      <h1>¿Qué paso?</h1>
+      <div class='center'><img src="images/surprise.jpg" height='250px'></div>
+      <p class='center'>Vamos a ver el código ...</p>
+    </div>
+
+    <div class="slide">
+      <h1>Comentarios</h1>
+      <p>Dejar un comentario en un lugar de forma anónima y luego listarlos en el lugar.</p>
+      <div>
+        <pre class="brush: bash">
+          $ rails g model Comment body:text place:references
+      
+          $ rake db:migrate
+        </pre>
+        <p>¡¡Agreguemos nuestro código!!</p>
+      </div>
+    </div>
+    
+    <div class="slide">
+      <h1>Registración de usuarios</h1>
+      <p>Creación de un usuario del sitio</p>
+      <div>
+        <pre class="brush: bash">
+          # agregar al Gemfile: gem 'bcrypt-ruby', '~> 3.1.2'
+
+          $ bundle
+          
+          $ rails g model user email:string nickname:string password_digest:string
+      
+          $ rake db:migrate
+        </pre>
+        <p>¡¡Agreguemos nuestro código!!</p>
+      </div>
+    </div>
+    
+    <div class="slide">
+      <h1>Sesión de usuario</h1>
+      <p>Inicio de sesión de un usuario</p>
+      <div>
+        <pre class="brush: bash">
+          $ rails g controller sessions
+        </pre>
+        <p>¡¡Agreguemos nuestro código!!</p>
+      </div>
+    </div>
+    
+    <div class="slide">
+      <h1>Comentarios por usuario (no anónimo)</h1>
+      <p>Dejar comentarios como usuario</p>
+      <div>
+        <pre class="brush: bash">
+          $ rails g migration add_author_to_comments author:references
+          
+          $ rake db:migrate
+        </pre>
+        <p>¡¡Agreguemos nuestro código!!</p>
+      </div>
+    </div>
+
+    <div class="slide">
+      <h1>Búsqueda de lugares</h1>
+      <p>Búsqueda de lugares por título, usando la gema ransack</p>
+      <div>
+        <pre class="brush: bash">
+          # agregar al Gemfile: gem 'ransack'
+          
+          # seguir la documentación de la Gema:
+          # https://github.com/activerecord-hackery/ransack
+        </pre>
+        <p>¡¡Agreguemos nuestro código!!</p>
+      </div>
+    </div>
+    
+    <div class="slide">
+      <h1>Subir imagen</h1>
+      <p>Agregar imagen a un lugar, usando la gema carrierwave</p>
+      <div>
+        <pre class="brush: bash">
+          # agregar al Gemfile: gem 'carrierwave'
+          
+          # seguir la documentación de la Gema: 
+          # https://github.com/carrierwaveuploader/carrierwave
+        </pre>
+        <p>¡¡Agreguemos nuestro código!!</p>
+      </div>
+    </div>
+
+    <div class="slide">
+      <h1>Más información en</h1>
+      <h2><a href="http://guides.rubyonrails.org/" target='blank'>http://guides.rubyonrails.org</a></h2>
+      <br>
+      <div class="center">
+        <img src="images/rails.png" alt="rails" height='200px'>
+      </div>
+    </div>
+  </body>
+</html>
